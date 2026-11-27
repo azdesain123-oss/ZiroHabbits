@@ -1,0 +1,2842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ziro Habbits — Permainan Kebiasaan Harian &amp; Kustomisasi Karakter untuk remaja dan dewasa muda dalam Bahasa Indonesia." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'; form-action 'self';" />
+  <title>Ziro Habbits — Permainan Kebiasaan &amp; Kustomisasi Karakter</title>
+
+  <style>
+    /* =====================================================================
+       1. VARIABEL PALET WARNA 60-30-10 HANGAT & ELEGAN
+          60% Putih Gading (#FAF7F2) & Putih Bersih (#FFFFFF)
+          30% Merah Crimson (#B93838 / #991B1B)
+          10% Emas Amber (#D97706)
+       ===================================================================== */
+    :root {
+      --bg-ivory: #FAF7F2;
+      --bg-white: #FFFFFF;
+      --crimson: #B93838;
+      --crimson-dark: #991B1B;
+      --crimson-soft: #FDF2F2;
+      --amber: #D97706;
+      --amber-dark: #B45309;
+      --amber-soft: #FEF3C7;
+      --emerald: #059669;
+      --emerald-soft: #ECFDF5;
+      --ink: #1F1D1B;
+      --muted: #6B655E;
+      --border: #E6DFD5;
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-card: 0 8px 24px -6px rgba(31, 29, 27, 0.08);
+      --shadow-crimson: 0 14px 32px -8px rgba(153, 27, 27, 0.35);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-ivory);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body {
+      padding-bottom: 5.5rem;
+    }
+
+    @media (min-width: 900px) {
+      body {
+        padding-bottom: 2.5rem;
+      }
+    }
+
+    h1, h2, h3, h4, p {
+      margin: 0;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+    }
+
+    /* =====================================================================
+       2. HEADER & NAVIGASI RESPONSIF
+       ===================================================================== */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--crimson), var(--crimson-dark));
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(185, 56, 56, 0.25);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .desktop-nav {
+      display: none;
+      background: var(--bg-ivory);
+      padding: 0.3rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      gap: 0.25rem;
+    }
+
+    @media (min-width: 900px) {
+      .desktop-nav {
+        display: flex;
+      }
+    }
+
+    .nav-btn {
+      padding: 0.5rem 0.95rem;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      color: var(--ink);
+    }
+
+    .nav-btn.active {
+      background: var(--crimson);
+      color: #FFFFFF;
+      box-shadow: 0 3px 10px rgba(185, 56, 56, 0.25);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .coin-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: var(--amber-soft);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: #92400E;
+    }
+
+    .coin-badge {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =====================================================================
+       3. LAYOUT UTAMA 2 KOLOM (KIRI KARAKTER, KANAN KONTEN INTERAKTIF)
+       ===================================================================== */
+    .main-container {
+      max-width: 1220px;
+      margin: 1.25rem auto 0;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .main-container {
+        grid-template-columns: 340px 1fr;
+        gap: 1.75rem;
+      }
+    }
+
+    /* =====================================================================
+       4. PANEL KIRI: KARTU STATUS KARAKTER (30% MERAH CRIMSON + 10% AMBER)
+       ===================================================================== */
+    .character-card {
+      background: linear-gradient(165deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-xl);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-crimson);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 900px) {
+      .character-card {
+        position: sticky;
+        top: 5rem;
+      }
+    }
+
+    @keyframes shakePenalty {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+
+    .character-card.penalty-shake {
+      animation: shakePenalty 0.45s ease-in-out;
+      box-shadow: 0 0 0 4px #FCA5A5, var(--shadow-crimson);
+    }
+
+    .avatar-stage {
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stage-top-meta {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .stage-pill {
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #FDE68A;
+    }
+
+    .stage-pill-white {
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #FFFFFF;
+    }
+
+    @keyframes floatChar {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .character-svg-box {
+      width: 215px;
+      height: 245px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .character-svg-box svg {
+      width: 100%;
+      height: 100%;
+      animation: floatChar 3.5s ease-in-out infinite;
+    }
+
+    .gender-switch {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 0.45rem;
+    }
+
+    .gender-btn {
+      padding: 0.5rem;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: rgba(0, 0, 0, 0.25);
+      color: rgba(255, 255, 255, 0.85);
+      transition: all 0.2s ease;
+    }
+
+    .gender-btn.active {
+      background: var(--amber);
+      color: #FFFFFF;
+      box-shadow: 0 3px 10px rgba(217, 119, 6, 0.4);
+    }
+
+    .custom-panel {
+      margin-top: 0.85rem;
+      padding: 0.85rem;
+      border-radius: var(--radius-lg);
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .custom-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .custom-row-val {
+      color: #FDE68A;
+      font-weight: 800;
+    }
+
+    .skin-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.35rem;
+    }
+
+    .skin-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.15rem;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1.5px solid transparent;
+      color: #FFFFFF;
+      transition: all 0.18s ease;
+    }
+
+    .skin-btn.active {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #FCD34D;
+      transform: scale(1.04);
+    }
+
+    .skin-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+    }
+
+    .skin-name {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .hair-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.35rem;
+    }
+
+    .hair-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.25rem;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1.5px solid transparent;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .hair-btn.active {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #FCD34D;
+      color: #FDE68A;
+    }
+
+    .hair-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .stats-block {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .identity-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .level-badge {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+      margin-right: 0.35rem;
+    }
+
+    .rank-text {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .char-name-row {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+    }
+
+    .char-name-text {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .edit-name-btn {
+      padding: 0.2rem 0.45rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .coin-card-box {
+      text-align: right;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.4rem 0.75rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .coin-card-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.75);
+      display: block;
+    }
+
+    .coin-card-val {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #FDE68A;
+    }
+
+    .bar-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 11px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 2px;
+      overflow: hidden;
+    }
+
+    .bar-fill-hp {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #FCA5A5, #FBBF24);
+      transition: width 0.35s ease;
+    }
+
+    .bar-fill-xp {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--amber);
+      transition: width 0.35s ease;
+    }
+
+    .level-curve-note {
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      margin-top: 0.15rem;
+    }
+
+    /* =====================================================================
+       5. PANEL KANAN: KARTU KONTEN PUTIH BERSIH (60% DOMINAN)
+       ===================================================================== */
+    .tab-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .tab-panel.active {
+      display: flex;
+    }
+
+    .surface-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--crimson);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-eyebrow.amber {
+      color: var(--amber);
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .section-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .form-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-ivory);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .form-grid-habit {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid-habit {
+        grid-template-columns: 1.5fr 1fr auto;
+        align-items: end;
+      }
+    }
+
+    .form-grid-todo {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid-todo {
+        grid-template-columns: 1.5fr 1fr 1fr auto;
+        align-items: end;
+      }
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .field-input, .field-select, .field-textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-white);
+      color: var(--ink);
+      font-size: 0.86rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .field-input:focus, .field-select:focus, .field-textarea:focus {
+      border-color: var(--crimson);
+    }
+
+    .btn-primary {
+      padding: 0.65rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: var(--crimson);
+      color: #FFFFFF;
+      font-size: 0.84rem;
+      font-weight: 800;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--crimson-dark);
+    }
+
+    .btn-primary:active, .btn-amber:active {
+      transform: scale(0.97);
+    }
+
+    .btn-amber {
+      padding: 0.65rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.84rem;
+      font-weight: 800;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-amber:hover {
+      background: var(--amber-dark);
+    }
+
+    .item-list {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quest-row {
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-ivory);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s ease;
+    }
+
+    @media (min-width: 600px) {
+      .quest-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .quest-row.done {
+      background: var(--emerald-soft);
+      border-color: #A7F3D0;
+    }
+
+    .quest-row.failed {
+      background: var(--crimson-soft);
+      border-color: #FECACA;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .diff-badge {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+
+    .diff-Mudah { background: #D1FAE5; color: #065F46; }
+    .diff-Sedang { background: var(--amber-soft); color: #92400E; }
+    .diff-Sulit { background: var(--crimson-soft); color: var(--crimson); }
+
+    .meta-small {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .quest-title {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .quest-title.strike {
+      text-decoration: line-through;
+      opacity: 0.75;
+    }
+
+    .quest-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      align-self: flex-end;
+    }
+
+    @media (min-width: 600px) {
+      .action-group {
+        align-self: center;
+      }
+    }
+
+    .btn-plus {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--emerald);
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+
+    .btn-plus:hover {
+      background: #047857;
+    }
+
+    .btn-minus {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--crimson);
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+
+    .btn-minus:hover {
+      background: var(--crimson-dark);
+    }
+
+    .btn-plus:active, .btn-minus:active {
+      transform: scale(0.92);
+    }
+
+    .btn-del {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-del:hover {
+      color: var(--crimson);
+      border-color: var(--crimson);
+    }
+
+    /* =====================================================================
+       6. KALENDER & JURNAL HARIAN
+       ===================================================================== */
+    .cal-journal-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 720px) {
+      .cal-journal-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+
+    .cal-nav-btns {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .cal-icon-btn {
+      padding: 0.4rem 0.7rem;
+      border-radius: 10px;
+      background: var(--bg-ivory);
+      border: 1px solid var(--border);
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--ink);
+    }
+
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .cal-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.35rem;
+    }
+
+    .cal-day-btn {
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bg-ivory);
+      border: 1.5px solid var(--border);
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .cal-day-btn:hover {
+      border-color: var(--crimson);
+    }
+
+    .cal-day-btn.today {
+      background: var(--amber-soft);
+      border-color: var(--amber);
+    }
+
+    .cal-day-btn.selected {
+      background: var(--crimson);
+      color: #FFFFFF;
+      border-color: var(--amber);
+      font-weight: 800;
+    }
+
+    .cal-dots {
+      display: flex;
+      gap: 3px;
+      margin-top: 2px;
+    }
+
+    .dot-todo {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--crimson);
+    }
+
+    .cal-day-btn.selected .dot-todo {
+      background: #FFFFFF;
+    }
+
+    .dot-journal {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    .cal-day-btn.selected .dot-journal {
+      background: #FDE68A;
+    }
+
+    .cal-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .journal-form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    .journal-history-grid {
+      margin-top: 0.9rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .journal-history-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .journal-entry-card {
+      text-align: left;
+      padding: 0.9rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-ivory);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .journal-entry-card:hover {
+      border-color: var(--crimson);
+    }
+
+    /* =====================================================================
+       7. TOKO & LEMARI KOSTUM (6 ITEM PAKAIAN)
+       ===================================================================== */
+    .shop-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 560px) {
+      .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .shop-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .shop-card {
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-ivory);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .shop-card.equipped {
+      background: var(--crimson-soft);
+      border-color: var(--crimson);
+    }
+
+    .shop-preview {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shop-btn-buy {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 12px;
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .shop-btn-equip {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 12px;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .shop-btn-equip:hover {
+      background: var(--crimson);
+      color: #FFFFFF;
+      border-color: var(--crimson);
+    }
+
+    .shop-btn-equipped {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 12px;
+      background: var(--crimson);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .shop-btn-equipped:hover {
+      background: var(--crimson-dark);
+    }
+
+    /* =====================================================================
+       8. KEAMANAN & DEPLOY (4 BERKAS PRODUKSI + TOMBOL SALIN)
+       ===================================================================== */
+    .file-block-wrap {
+      margin-top: 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #1F1D1B;
+    }
+
+    .file-block-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0.9rem;
+      background: #2C2926;
+      border-bottom: 1px solid #3F3B37;
+      color: #FAF7F2;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .copy-code-btn {
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      background: var(--amber);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .copy-code-btn:hover {
+      background: var(--amber-dark);
+    }
+
+    .code-box {
+      margin: 0;
+      padding: 0.95rem;
+      color: #6EE7B7;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .deploy-steps {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .deploy-steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .step-card {
+      padding: 0.9rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-ivory);
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+
+    /* =====================================================================
+       9. MOBILE NAV, TOAST & MODAL
+       ===================================================================== */
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border);
+      padding: 0.45rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3rem;
+    }
+
+    @media (min-width: 900px) {
+      .mobile-nav {
+        display: none;
+      }
+    }
+
+    .mobile-nav-btn {
+      padding: 0.45rem 0.2rem;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .mobile-nav-btn.active {
+      background: var(--crimson);
+      color: #FFFFFF;
+    }
+
+    .toast-stack {
+      position: fixed;
+      bottom: 4.8rem;
+      right: 1rem;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-width: 330px;
+      pointer-events: none;
+    }
+
+    @media (min-width: 900px) {
+      .toast-stack {
+        bottom: 1.25rem;
+      }
+    }
+
+    .toast-item {
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      background: var(--ink);
+      color: #FFFFFF;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-left: 4px solid var(--amber);
+    }
+
+    .toast-item.error {
+      background: var(--crimson-dark);
+      border-left-color: #FFFFFF;
+    }
+
+    .toast-item.reward {
+      background: var(--crimson);
+      border-left-color: #FCD34D;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 360px;
+      background: var(--bg-white);
+      border-radius: var(--radius-xl);
+      padding: 1.35rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER UTAMA
+       ===================================================================== -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">Ziro Habbits</div>
+          <div class="brand-sub">Permainan Kebiasaan</div>
+        </div>
+      </div>
+
+      <!-- Navigasi Desktop 4 Tab -->
+      <!-- Navigasi Desktop 3 Tab Utama -->
+      <nav class="desktop-nav" aria-label="Navigasi Utama">
+        <button type="button" class="nav-btn active" data-tab="tab-habits">Kebiasaan &amp; Misi</button>
+        <button type="button" class="nav-btn" data-tab="tab-calendar">Kalender &amp; Jurnal</button>
+        <button type="button" class="nav-btn" data-tab="tab-shop">Toko &amp; Lemari</button>
+      </nav>
+
+      <!-- Saldo Koin -->
+      <div class="header-actions">
+        <div class="coin-pill" title="Saldo Koin Ziro">
+          <span class="coin-badge">Z</span>
+          <span id="header-coins">50</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       KONTEN UTAMA 2 KOLOM
+       ===================================================================== -->
+  <main class="main-container">
+
+    <!-- ===================================================================
+         PANEL KIRI STICKY: STATUS KARAKTER & KUSTOMISASI REAL-TIME
+         =================================================================== -->
+    <aside>
+      <section id="character-card" class="character-card">
+        <div class="avatar-stage">
+          <div class="stage-top-meta">
+            <span id="outfit-active-label" class="stage-pill">Kaos Harian Merah</span>
+            <span id="streak-label" class="stage-pill-white">Streak: 1 Hari</span>
+          </div>
+
+          <div class="character-svg-box">
+            <svg id="character-svg" viewBox="0 0 220 260" role="img" aria-label="Ilustrasi Karakter Ziro Habbits">
+              <ellipse cx="110" cy="242" rx="52" ry="9" fill="#1F1D1B" opacity="0.35" />
+              <g id="svg-hair-back"></g>
+              <g id="svg-outfit"></g>
+              <g id="svg-head"></g>
+              <g id="svg-hair-front"></g>
+            </svg>
+          </div>
+
+          <!-- Pilihan Gender Pria & Wanita -->
+          <div class="gender-switch">
+            <button id="btn-gender-male" type="button" class="gender-btn active">Karakter Pria</button>
+            <button id="btn-gender-female" type="button" class="gender-btn">Karakter Wanita</button>
+          </div>
+        </div>
+
+        <!-- Kustomisasi Warna Kulit & Warna Rambut -->
+        <div class="custom-panel">
+          <div>
+            <div class="custom-row-head">
+              <span>Warna Kulit</span>
+              <span id="skin-label" class="custom-row-val">Krem Hangat</span>
+            </div>
+            <div id="skin-grid" class="skin-grid"></div>
+          </div>
+
+          <div>
+            <div class="custom-row-head">
+              <span>Warna Rambut</span>
+              <span id="hair-label" class="custom-row-val">Hitam Arang</span>
+            </div>
+            <div id="hair-grid" class="hair-grid"></div>
+          </div>
+        </div>
+
+        <!-- Identitas & Status HP / XP / Koin -->
+        <div class="stats-block">
+          <div class="identity-row">
+            <div>
+              <div>
+                <span id="level-badge" class="level-badge">LVL 1</span>
+                <span id="rank-label" class="rank-text">Pemula Disiplin</span>
+              </div>
+              <div class="char-name-row">
+                <h1 id="char-name-display" class="char-name-text">Ziro Explorer</h1>
+                <button id="btn-open-name-modal" type="button" class="edit-name-btn" aria-label="Ubah Nama">Ubah</button>
+              </div>
+            </div>
+
+            <div class="coin-card-box">
+              <span class="coin-card-label">Koin Poin</span>
+              <span id="card-coins" class="coin-card-val">50 Z</span>
+            </div>
+          </div>
+
+          <!-- HP Bar -->
+          <div>
+            <div class="bar-head">
+              <span>Health (HP)</span>
+              <span id="hp-text">85 / 100 HP</span>
+            </div>
+            <div class="bar-track">
+              <div id="hp-bar" class="bar-fill-hp" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <!-- XP Bar -->
+          <div>
+            <div class="bar-head">
+              <span>Experience (XP)</span>
+              <span id="xp-text">20 / 40 XP</span>
+            </div>
+            <div class="bar-track">
+              <div id="xp-bar" class="bar-fill-xp" style="width: 50%;"></div>
+            </div>
+            <div id="level-curve-note" class="level-curve-note">Fase Pemula (Lvl 1–3): Cepat Naik Level</div>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- ===================================================================
+         PANEL KANAN: 4 TAB FUNGSIONAL UTAMA
+         =================================================================== -->
+    <div>
+
+      <!-- =================================================================
+           TAB 1: KEBIASAAN & MISI
+           ================================================================= -->
+      <div id="tab-habits" class="tab-panel active">
+        <!-- A. Kebiasaan Harian -->
+        <section class="surface-card">
+          <span class="section-eyebrow">Rutinitas &amp; Konsekuensi Permainan</span>
+          <h2 class="section-title">Kebiasaan Harian (Habits)</h2>
+          <p class="section-desc">Tekan <strong>+</strong> saat menjalani kebiasaan untuk mendapat Koin, XP &amp; HP, atau <strong>−</strong> jika lalai (mengurangi Koin, HP &amp; XP hingga bisa turun level).</p>
+
+          <form id="form-habit" class="form-box" novalidate>
+            <div class="form-grid-habit">
+              <div>
+                <label for="habit-title" class="field-label">Nama Kebiasaan Baru</label>
+                <input id="habit-title" type="text" maxlength="60" class="field-input" placeholder="Contoh: Olahraga 20 menit / Tidur sebelum jam 11" />
+              </div>
+              <div>
+                <label for="habit-diff" class="field-label">Tingkat Kesulitan</label>
+                <select id="habit-diff" class="field-select">
+                  <option value="Mudah">Mudah (+10 Koin, +15 XP | −15 Koin, −15 XP, −10 HP)</option>
+                  <option value="Sedang" selected>Sedang (+20 Koin, +25 XP | −25 Koin, −25 XP, −15 HP)</option>
+                  <option value="Sulit">Sulit (+30 Koin, +40 XP | −35 Koin, −40 XP, −20 HP)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary">+ Tambah Kebiasaan</button>
+            </div>
+          </form>
+
+          <div id="habits-list" class="item-list"></div>
+        </section>
+
+        <!-- B. Target & Misi Terjadwal (To-Do List) -->
+        <section class="surface-card">
+          <span class="section-eyebrow amber">Terhubung ke Kalender</span>
+          <h2 class="section-title">Target &amp; Misi Terjadwal (To-Do List)</h2>
+          <p class="section-desc">Setiap misi terjadwal otomatis muncul sebagai indikator di tab Kalender &amp; Jurnal.</p>
+
+          <form id="form-todo" class="form-box" novalidate>
+            <div class="form-grid-todo">
+              <div>
+                <label for="todo-title" class="field-label">Judul Target / Misi</label>
+                <input id="todo-title" type="text" maxlength="70" class="field-input" placeholder="Tulis target tugas terjadwal..." />
+              </div>
+              <div>
+                <label for="todo-date" class="field-label">Harus Selesai</label>
+                <input id="todo-date" type="date" class="field-input" />
+              </div>
+              <div>
+                <label for="todo-diff" class="field-label">Tingkat Kesulitan</label>
+                <select id="todo-diff" class="field-select">
+                  <option value="Mudah">Mudah (+10 / −15)</option>
+                  <option value="Sedang" selected>Sedang (+20 / −25)</option>
+                  <option value="Sulit">Sulit (+30 / −35)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-amber">Tambah Misi</button>
+            </div>
+          </form>
+
+          <div id="todos-list" class="item-list"></div>
+        </section>
+      </div>
+
+      <!-- =================================================================
+           TAB 2: KALENDER & JURNAL HARIAN (+5 POIN)
+           ================================================================= -->
+      <div id="tab-calendar" class="tab-panel">
+        <section class="surface-card">
+          <div class="cal-journal-grid">
+            <!-- Kalender Bulanan -->
+            <div>
+              <div class="cal-header">
+                <div>
+                  <span class="section-eyebrow">Pilih Tanggal</span>
+                  <h2 id="cal-month-title" class="section-title">November 2026</h2>
+                </div>
+                <div class="cal-nav-btns">
+                  <button id="btn-prev-month" type="button" class="cal-icon-btn" aria-label="Bulan Sebelumnya">&larr;</button>
+                  <button id="btn-next-month" type="button" class="cal-icon-btn" aria-label="Bulan Berikutnya">&rarr;</button>
+                </div>
+              </div>
+
+              <div class="cal-weekdays">
+                <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+              </div>
+              <div id="cal-days-grid" class="cal-days-grid"></div>
+
+              <div class="cal-legend">
+                <span class="legend-item"><span class="dot-todo"></span> Ada Misi To-Do</span>
+                <span class="legend-item"><span class="dot-journal"></span> Ada Jurnal Harian</span>
+              </div>
+
+              <!-- Ringkasan Misi Tanggal Terpilih & Pengingat Notifikasi -->
+              <div class="form-box" style="margin-top: 0.9rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+                  <div id="cal-agenda-heading" class="field-label" style="color: var(--crimson); margin-bottom: 0;">Misi pada Tanggal Ini</div>
+                  <button id="btn-enable-notif" type="button" class="cal-icon-btn" style="font-size: 0.72rem; background: var(--amber-soft); border-color: rgba(217,119,6,0.35); color: #92400E;">Aktifkan Pengingat</button>
+                </div>
+                <div id="cal-agenda-list" style="display: flex; flex-direction: column; gap: 0.35rem;"></div>
+              </div>
+            </div>
+
+            <!-- Form Jurnal & Refleksi Harian 2 Kolom -->
+            <div>
+              <span class="section-eyebrow amber">Refleksi Harian (+5 Koin &amp; +10 XP)</span>
+              <h2 class="section-title">Jurnal &amp; Refleksi Harian</h2>
+              <p id="journal-active-date" class="section-desc" style="color: var(--crimson); font-weight: 800;">Tanggal Terpilih: -</p>
+
+              <div class="journal-form-stack">
+                <div>
+                  <label for="journal-activity" class="field-label">Aktivitas Hari Ini</label>
+                  <textarea id="journal-activity" rows="3" maxlength="400" class="field-textarea" placeholder="Ceritakan aktivitasmu hari ini (kuliah, kerja, olahraga, proyek)..."></textarea>
+                </div>
+
+                <div>
+                  <label for="journal-achievement" class="field-label">Pencapaian &amp; Hal Baik</label>
+                  <textarea id="journal-achievement" rows="3" maxlength="400" class="field-textarea" placeholder="Tulis pencapaian kecil atau pelajaran berharga hari ini..."></textarea>
+                </div>
+
+                <button id="btn-save-journal" type="button" class="btn-primary" style="width: 100%; padding: 0.75rem;">
+                  Simpan Jurnal (+5 Koin &amp; +10 XP)
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Riwayat Jurnal Tersimpan -->
+        <section class="surface-card">
+          <span class="section-eyebrow">Arsip Catatan</span>
+          <h3 class="section-title">Riwayat Jurnal Tersimpan</h3>
+          <p class="section-desc">Klik salah satu kartu jurnal di bawah untuk membuka kembali tanggal tersebut.</p>
+          <div id="journal-history-list" class="journal-history-grid"></div>
+        </section>
+      </div>
+
+      <!-- =================================================================
+           TAB 3: TOKO & LEMARI KOSTUM (6 PAKAIAN KARAKTER)
+           ================================================================= -->
+      <div id="tab-shop" class="tab-panel">
+        <section class="surface-card">
+          <span class="section-eyebrow amber">Koleksi Pakaian Karakter</span>
+          <h2 class="section-title">Toko &amp; Lemari</h2>
+          <p class="section-desc">Gunakan Koin hasil kebiasaan baikmu untuk membeli, mengenakan, atau melepas pakaian pada karakter di panel kiri.</p>
+
+          <div id="shop-grid" class="shop-grid"></div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Navigasi Bawah Khusus Mobile -->
+  <nav class="mobile-nav" aria-label="Navigasi Mobile">
+    <button type="button" class="mobile-nav-btn active" data-tab="tab-habits">
+      <span>Misi</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-tab="tab-calendar">
+      <span>Jurnal</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-tab="tab-shop">
+      <span>Kostum</span>
+    </button>
+  </nav>
+
+  <!-- Modal Ubah Nama Karakter -->
+  <div id="name-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="name-modal-title">
+    <div class="modal-box">
+      <h3 id="name-modal-title" class="section-title">Ubah Nama Karakter</h3>
+      <div>
+        <label for="input-char-name" class="field-label">Nama Karakter</label>
+        <input id="input-char-name" type="text" maxlength="24" class="field-input" placeholder="Masukkan nama karakter..." />
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+        <button id="btn-cancel-name" type="button" class="cal-icon-btn">Batal</button>
+        <button id="btn-save-name" type="button" class="btn-primary">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wadah Toast Notifikasi -->
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <!-- =====================================================================
+       LOGIKA JAVASCRIPT MURNI (ANTI-XSS, LEVEL PROGRESIF & LOCALSTORAGE)
+       ===================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'ziro_habbits_state_v2';
+      const SVG_NS = 'http://www.w3.org/2000/svg';
+
+      const SKIN_TONES = [
+        { id: 'krem-cerah', label: 'Krem Cerah', short: 'Cerah', hex: '#FDE3CE' },
+        { id: 'krem-hangat', label: 'Krem Hangat', short: 'Hangat', hex: '#F3C69F' },
+        { id: 'sawo-matang', label: 'Sawo Matang', short: 'Sawo', hex: '#D99B66' },
+        { id: 'coklat-karamel', label: 'Coklat Karamel', short: 'Karamel', hex: '#A96B3D' },
+        { id: 'coklat-gelap', label: 'Coklat Gelap', short: 'Gelap', hex: '#6F4124' }
+      ];
+
+      const HAIR_COLORS = [
+        { id: 'hitam', label: 'Hitam Arang', short: 'Hitam', hex: '#231F20' },
+        { id: 'coklat', label: 'Coklat Kopi', short: 'Coklat', hex: '#4E3121' },
+        { id: 'merah', label: 'Merah Mahoni', short: 'Mahoni', hex: '#8B2626' },
+        { id: 'emas', label: 'Emas Madu', short: 'Madu', hex: '#D99B26' }
+      ];
+
+      const OUTFITS = [
+        {
+          id: 'kaos-merah',
+          name: 'Kaos Harian Merah',
+          price: 0,
+          topColor: '#B93838',
+          accentColor: '#FAF7F2',
+          pantsColor: '#292524',
+          shoeColor: '#FFFFFF',
+          desc: 'Kaos kasual merah crimson dengan celana gelap untuk aktivitas harian.'
+        },
+        {
+          id: 'hoodie-krem',
+          name: 'Hoodie Santai Krem',
+          price: 30,
+          topColor: '#F3ECE0',
+          accentColor: '#B93838',
+          pantsColor: '#44403C',
+          shoeColor: '#B93838',
+          desc: 'Hoodie hangat warna krem gading dengan tali merah crimson.'
+        },
+        {
+          id: 'flanel-nusantara',
+          name: 'Kemeja Flanel Nusantara',
+          price: 50,
+          topColor: '#991B1B',
+          accentColor: '#F59E0B',
+          pantsColor: '#1E293B',
+          shoeColor: '#D97706',
+          desc: 'Kemeja flanel kotak hangat berlapis kaos dalam putih bersih.'
+        },
+        {
+          id: 'varsity-crimson',
+          name: 'Jaket Varsity Crimson',
+          price: 75,
+          topColor: '#B93838',
+          accentColor: '#FAF7F2',
+          pantsColor: '#1F2937',
+          shoeColor: '#F59E0B',
+          desc: 'Jaket kampus sporty berlengan putih gading dan emblem Z emas.'
+        },
+        {
+          id: 'jubah-akademi',
+          name: 'Jubah Akademi Emas',
+          price: 95,
+          topColor: '#292524',
+          accentColor: '#F59E0B',
+          pantsColor: '#1C1917',
+          shoeColor: '#F59E0B',
+          desc: 'Jubah cendekiawan muda berlis emas amber yang elegan.'
+        },
+        {
+          id: 'armor-fajar',
+          name: 'Armor Ksatria Fajar',
+          price: 120,
+          topColor: '#B93838',
+          accentColor: '#F59E0B',
+          pantsColor: '#44403C',
+          shoeColor: '#F59E0B',
+          desc: 'Zirah tempur merah-emas dengan pelindung bahu bagi penakluk kebiasaan.'
+        }
+      ];
+
+      // Aturan Kesulitan Sesuai Spesifikasi
+      const DIFF_RULES = {
+        Mudah: { rewardCoins: 10, rewardXp: 15, rewardHp: 5, penaltyCoins: 15, penaltyXp: 15, penaltyHp: 10 },
+        Sedang: { rewardCoins: 20, rewardXp: 25, rewardHp: 8, penaltyCoins: 25, penaltyXp: 25, penaltyHp: 15 },
+        Sulit: { rewardCoins: 30, rewardXp: 40, rewardHp: 12, penaltyCoins: 35, penaltyXp: 40, penaltyHp: 20 }
+      };
+
+      const MONTHS_ID = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+      ];
+
+      // Kurva Kebutuhan XP Progresif per Level
+      function getXpRequired(level) {
+        if (level <= 1) return 40;
+        if (level === 2) return 60;
+        if (level === 3) return 80;
+        if (level === 4) return 130;
+        if (level === 5) return 190;
+        if (level === 6) return 260;
+        return 350 + (level - 7) * 110;
+      }
+
+      function getRankTitle(level) {
+        if (level >= 7) return 'Master Disiplin';
+        if (level >= 4) return 'Pejuang Tangguh';
+        return 'Pemula Disiplin';
+      }
+
+      function getPhaseNote(level) {
+        if (level <= 3) return 'Fase Pemula (Lvl 1–3): Cepat Naik Level';
+        if (level <= 6) return 'Fase Menengah (Lvl 4–6): Tantangan Meningkat';
+        return 'Fase Master (Lvl 7+): Konsistensi Tinggi';
+      }
+
+      function getTodayStr(offset = 0) {
+        const d = new Date();
+        d.setDate(d.getDate() + offset);
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
+      }
+
+      function formatDateIndo(dateStr) {
+        const p = (dateStr || '').split('-');
+        if (p.length !== 3) return dateStr;
+        const mName = MONTHS_ID[parseInt(p[1], 10) - 1] || p[1];
+        return `${parseInt(p[2], 10)} ${mName} ${p[0]}`;
+      }
+
+      function sanitize(str, maxLen) {
+        if (typeof str !== 'string') return '';
+        return str.replace(/[\u0000-\u001F\u007F<>]/g, '').trim().slice(0, maxLen);
+      }
+
+      function clearNode(el) {
+        if (!el) return;
+        while (el.firstChild) el.removeChild(el.firstChild);
+      }
+
+      function svgEl(tag, attrs) {
+        const el = document.createElementNS(SVG_NS, tag);
+        Object.keys(attrs).forEach(k => el.setAttribute(k, attrs[k]));
+        return el;
+      }
+
+      function createInitialState() {
+        const today = getTodayStr(0);
+        return {
+          character: {
+            name: 'Ziro Explorer',
+            gender: 'male',
+            skin: '#F3C69F',
+            hair: '#231F20',
+            hp: 85,
+            maxHp: 100,
+            xp: 20,
+            level: 1,
+            coins: 50,
+            streak: 1,
+            equippedOutfit: 'kaos-merah',
+            ownedOutfits: ['kaos-merah']
+          },
+          habits: [
+            { id: 'hab-1', title: 'Minum 2 Liter Air Putih', diff: 'Mudah', streak: 2, doneToday: false },
+            { id: 'hab-2', title: 'Membaca Buku 20 Menit', diff: 'Sedang', streak: 1, doneToday: false },
+            { id: 'hab-3', title: 'Olahraga Fisik 30 Menit', diff: 'Sulit', streak: 0, doneToday: false }
+          ],
+          todos: [
+            { id: 'td-1', title: 'Selesaikan tugas utama hari ini', date: today, diff: 'Sedang', status: 'pending' },
+            { id: 'td-2', title: 'Rapikan jadwal & meja belajar', date: today, diff: 'Mudah', status: 'done' }
+          ],
+          journals: {
+            [today]: {
+              activity: 'Menyusun jadwal kebiasaan harian dan merapikan target belajar.',
+              achievement: 'Berhasil memulai rutinitas pagi tepat waktu.',
+              rewarded: true
+            }
+          },
+          ui: {
+            selectedDate: today,
+            calYear: new Date().getFullYear(),
+            calMonth: new Date().getMonth()
+          }
+        };
+      }
+
+      let state = loadState();
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return createInitialState();
+          const parsed = JSON.parse(raw);
+          if (!parsed || !parsed.character) return createInitialState();
+          return parsed;
+        } catch (err) {
+          return createInitialState();
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (err) {
+          showToast('Gagal menyimpan data ke LocalStorage.', 'error');
+        }
+      }
+
+      function showToast(msg, variant = 'normal') {
+        const stack = document.getElementById('toast-stack');
+        if (!stack) return;
+        const item = document.createElement('div');
+        item.className = `toast-item ${variant === 'error' ? 'error' : variant === 'reward' ? 'reward' : ''}`;
+        item.textContent = msg;
+        stack.appendChild(item);
+
+        setTimeout(() => {
+          item.style.opacity = '0';
+          item.style.transition = 'opacity 0.25s ease';
+          setTimeout(() => {
+            if (item.parentNode) item.parentNode.removeChild(item);
+          }, 260);
+        }, 3000);
+      }
+
+      // =====================================================================
+      // 1. RENDER ILUSTRASI KARAKTER SVG (VIEWBOX 0 0 220 260, RAMBUT PENUH)
+      // =====================================================================
+      function drawOutfitOnGroup(group, outfitId, gender, skinHex) {
+        const isFemale = gender === 'female';
+
+        // Kaki (warna kulit)
+        group.appendChild(svgEl('rect', { x: '91', y: '188', width: '14', height: '44', rx: '6', fill: skinHex }));
+        group.appendChild(svgEl('rect', { x: '115', y: '188', width: '14', height: '44', rx: '6', fill: skinHex }));
+
+        // Lengan & Tangan (warna kulit)
+        group.appendChild(svgEl('rect', { x: '66', y: '136', width: '14', height: '46', rx: '7', fill: skinHex }));
+        group.appendChild(svgEl('rect', { x: '140', y: '136', width: '14', height: '46', rx: '7', fill: skinHex }));
+
+        // Kondisi jika pakaian dilepas (setelan dasar polos)
+        if (!outfitId) {
+          const baseTorso = isFemale
+            ? 'M82 132 L138 132 L135 160 L139 188 L81 188 L85 160 Z'
+            : 'M78 132 L142 132 L140 188 L80 188 Z';
+          group.appendChild(svgEl('path', { d: baseTorso, fill: '#E7E2D8' }));
+          group.appendChild(svgEl('rect', { x: '89', y: '188', width: '17', height: '32', rx: '5', fill: '#57534E' }));
+          group.appendChild(svgEl('rect', { x: '114', y: '188', width: '17', height: '32', rx: '5', fill: '#57534E' }));
+          group.appendChild(svgEl('rect', { x: '86', y: '226', width: '21', height: '10', rx: '5', fill: '#D6D3D1' }));
+          group.appendChild(svgEl('rect', { x: '113', y: '226', width: '21', height: '10', rx: '5', fill: '#D6D3D1' }));
+          return;
+        }
+
+        const outfit = OUTFITS.find(o => o.id === outfitId) || OUTFITS[0];
+
+        // Celana atau Rok
+        if (isFemale && (outfitId === 'jubah-akademi' || outfitId === 'flanel-nusantara')) {
+          group.appendChild(svgEl('path', { d: 'M80 182 L140 182 L147 212 L73 212 Z', fill: outfit.pantsColor }));
+        } else {
+          group.appendChild(svgEl('rect', { x: '89', y: '188', width: '17', height: '40', rx: '5', fill: outfit.pantsColor }));
+          group.appendChild(svgEl('rect', { x: '114', y: '188', width: '17', height: '40', rx: '5', fill: outfit.pantsColor }));
+        }
+
+        // Sepatu
+        group.appendChild(svgEl('rect', { x: '86', y: '226', width: '21', height: '10', rx: '5', fill: outfit.shoeColor }));
+        group.appendChild(svgEl('rect', { x: '113', y: '226', width: '21', height: '10', rx: '5', fill: outfit.shoeColor }));
+
+        // Badan Pakaian
+        const torsoD = isFemale
+          ? 'M81 132 L139 132 L135 160 L140 190 L80 190 L85 160 Z'
+          : 'M77 132 L143 132 L141 190 L79 190 Z';
+
+        if (outfitId === 'armor-fajar') {
+          group.appendChild(svgEl('path', { d: torsoD, fill: outfit.topColor, stroke: outfit.accentColor, 'stroke-width': '3' }));
+          group.appendChild(svgEl('circle', { cx: '75', cy: '138', r: '12', fill: outfit.accentColor }));
+          group.appendChild(svgEl('circle', { cx: '145', cy: '138', r: '12', fill: outfit.accentColor }));
+          group.appendChild(svgEl('path', { d: 'M110 142 L121 150 L118 166 L110 172 L102 166 L99 150 Z', fill: '#FCD34D' }));
+        } else if (outfitId === 'jubah-akademi') {
+          group.appendChild(svgEl('path', { d: torsoD, fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '65', y: '134', width: '15', height: '36', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '140', y: '134', width: '15', height: '36', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('path', { d: 'M94 132 L110 158 L126 132', fill: 'none', stroke: outfit.accentColor, 'stroke-width': '3.5' }));
+          group.appendChild(svgEl('line', { x1: '110', y1: '158', x2: '110', y2: '190', stroke: outfit.accentColor, 'stroke-width': '3' }));
+        } else if (outfitId === 'varsity-crimson') {
+          group.appendChild(svgEl('path', { d: torsoD, fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '65', y: '134', width: '15', height: '36', rx: '7', fill: outfit.accentColor }));
+          group.appendChild(svgEl('rect', { x: '140', y: '134', width: '15', height: '36', rx: '7', fill: outfit.accentColor }));
+          group.appendChild(svgEl('line', { x1: '110', y1: '132', x2: '110', y2: '190', stroke: outfit.accentColor, 'stroke-width': '2.5' }));
+          group.appendChild(svgEl('circle', { cx: '122', cy: '152', r: '7', fill: '#F59E0B' }));
+        } else if (outfitId === 'flanel-nusantara') {
+          group.appendChild(svgEl('path', { d: torsoD, fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '65', y: '134', width: '15', height: '34', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '140', y: '134', width: '15', height: '34', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '101', y: '132', width: '18', height: '58', fill: '#FAF7F2' }));
+          group.appendChild(svgEl('line', { x1: '82', y1: '158', x2: '138', y2: '158', stroke: outfit.accentColor, 'stroke-width': '2', opacity: '0.75' }));
+        } else if (outfitId === 'hoodie-krem') {
+          group.appendChild(svgEl('path', { d: torsoD, fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '65', y: '134', width: '15', height: '37', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '140', y: '134', width: '15', height: '37', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('line', { x1: '103', y1: '134', x2: '103', y2: '155', stroke: outfit.accentColor, 'stroke-width': '2.5', 'stroke-linecap': 'round' }));
+          group.appendChild(svgEl('line', { x1: '117', y1: '134', x2: '117', y2: '155', stroke: outfit.accentColor, 'stroke-width': '2.5', 'stroke-linecap': 'round' }));
+          group.appendChild(svgEl('rect', { x: '93', y: '166', width: '34', height: '16', rx: '5', fill: '#E5DEC9' }));
+        } else {
+          // Kaos Harian Merah
+          group.appendChild(svgEl('path', { d: torsoD, fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '65', y: '134', width: '15', height: '25', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('rect', { x: '140', y: '134', width: '15', height: '25', rx: '7', fill: outfit.topColor }));
+          group.appendChild(svgEl('polygon', { points: '112,145 103,159 110,159 107,171 117,156 110,156', fill: outfit.accentColor }));
+        }
+      }
+
+      function renderCharacter() {
+        const char = state.character;
+        const gHairBack = document.getElementById('svg-hair-back');
+        const gOutfit = document.getElementById('svg-outfit');
+        const gHead = document.getElementById('svg-head');
+        const gHairFront = document.getElementById('svg-hair-front');
+
+        [gHairBack, gOutfit, gHead, gHairFront].forEach(clearNode);
+
+        const isFemale = char.gender === 'female';
+
+        // 1. Rambut Belakang Penuh (Menutup seluruh kontur atas & belakang kepala)
+        if (isFemale) {
+          gHairBack.appendChild(svgEl('path', {
+            d: 'M64 82 C64 36, 156 36, 156 82 L162 178 C162 192, 148 196, 138 192 L82 192 C72 196, 58 192, 58 178 Z',
+            fill: char.hair
+          }));
+        } else {
+          gHairBack.appendChild(svgEl('path', {
+            d: 'M69 86 C68 38, 152 38, 151 86 C151 102, 146 112, 142 114 L78 114 C74 112, 69 102, 69 86 Z',
+            fill: char.hair
+          }));
+        }
+
+        // 2. Pakaian & Anggota Tubuh
+        drawOutfitOnGroup(gOutfit, char.equippedOutfit, char.gender, char.skin);
+
+        // 3. Leher, Telinga & Wajah (Warna Kulit Real-Time)
+        gHead.appendChild(svgEl('rect', { x: '102', y: '118', width: '16', height: '18', rx: '6', fill: char.skin }));
+        gHead.appendChild(svgEl('circle', { cx: '74', cy: '94', r: '6.5', fill: char.skin }));
+        gHead.appendChild(svgEl('circle', { cx: '146', cy: '94', r: '6.5', fill: char.skin }));
+        gHead.appendChild(svgEl('circle', { cx: '110', cy: '92', r: '35', fill: char.skin }));
+
+        // Alis & Mata
+        if (isFemale) {
+          gHead.appendChild(svgEl('path', { d: 'M91 84 Q98 81 104 84', fill: 'none', stroke: char.hair, 'stroke-width': '2', 'stroke-linecap': 'round' }));
+          gHead.appendChild(svgEl('path', { d: 'M116 84 Q122 81 129 84', fill: 'none', stroke: char.hair, 'stroke-width': '2', 'stroke-linecap': 'round' }));
+          gHead.appendChild(svgEl('line', { x1: '91', y1: '91', x2: '95', y2: '92', stroke: '#1F1D1B', 'stroke-width': '2', 'stroke-linecap': 'round' }));
+          gHead.appendChild(svgEl('line', { x1: '129', y1: '91', x2: '125', y2: '92', stroke: '#1F1D1B', 'stroke-width': '2', 'stroke-linecap': 'round' }));
+        } else {
+          gHead.appendChild(svgEl('line', { x1: '91', y1: '83', x2: '104', y2: '84', stroke: char.hair, 'stroke-width': '2.6', 'stroke-linecap': 'round' }));
+          gHead.appendChild(svgEl('line', { x1: '116', y1: '84', x2: '129', y2: '83', stroke: char.hair, 'stroke-width': '2.6', 'stroke-linecap': 'round' }));
+        }
+
+        gHead.appendChild(svgEl('circle', { cx: '98', cy: '93', r: '4', fill: '#1F1D1B' }));
+        gHead.appendChild(svgEl('circle', { cx: '122', cy: '93', r: '4', fill: '#1F1D1B' }));
+        gHead.appendChild(svgEl('circle', { cx: '99.3', cy: '91.6', r: '1.4', fill: '#FFFFFF' }));
+        gHead.appendChild(svgEl('circle', { cx: '123.3', cy: '91.6', r: '1.4', fill: '#FFFFFF' }));
+
+        // Rona Pipi
+        gHead.appendChild(svgEl('ellipse', { cx: '90', cy: '101', rx: '4.5', ry: '2.5', fill: '#F87171', opacity: '0.5' }));
+        gHead.appendChild(svgEl('ellipse', { cx: '130', cy: '101', rx: '4.5', ry: '2.5', fill: '#F87171', opacity: '0.5' }));
+
+        // Ekspresi Mulut
+        if (char.hp >= 40) {
+          gHead.appendChild(svgEl('path', { d: 'M103 105 Q110 112 117 105', fill: 'none', stroke: '#1F1D1B', 'stroke-width': '2.5', 'stroke-linecap': 'round' }));
+        } else {
+          gHead.appendChild(svgEl('path', { d: 'M103 110 Q110 104 117 110', fill: 'none', stroke: '#1F1D1B', 'stroke-width': '2.5', 'stroke-linecap': 'round' }));
+        }
+
+        // 4. Mahkota Rambut Atas Bervolume + Poni Berlapis (Anti-Botak)
+        if (isFemale) {
+          // Kubah Mahkota Atas Penuh Wanita
+          gHairFront.appendChild(svgEl('path', {
+            d: 'M66 90 C65 34, 155 34, 154 90 C150 76, 144 68, 138 78 C128 69, 118 68, 110 77 C101 68, 90 69, 81 79 C75 69, 70 77, 66 90 Z',
+            fill: char.hair
+          }));
+          // Helaian Samping Bingkai Wajah
+          gHairFront.appendChild(svgEl('path', {
+            d: 'M68 78 Q66 118 76 144 Q81 116 79 84 Z',
+            fill: char.hair
+          }));
+          gHairFront.appendChild(svgEl('path', {
+            d: 'M152 78 Q154 118 144 144 Q139 116 141 84 Z',
+            fill: char.hair
+          }));
+        } else {
+          // Kubah Mahkota Atas Bertekstur & Poni Berlapis Pria
+          gHairFront.appendChild(svgEl('path', {
+            d: 'M71 88 C69 34, 151 34, 149 88 C145 73, 138 69, 130 77 C124 67, 116 66, 110 76 C103 65, 95 66, 89 77 C82 69, 75 73, 71 88 Z',
+            fill: char.hair
+          }));
+          // Jambul Bervolume di Puncak Kepala
+          gHairFront.appendChild(svgEl('path', {
+            d: 'M86 48 Q106 31 130 43 Q118 52 94 54 Z',
+            fill: char.hair
+          }));
+        }
+
+        // Update Label & Bar Status
+        const outfitObj = OUTFITS.find(o => o.id === char.equippedOutfit);
+        const xpMax = getXpRequired(char.level);
+
+        document.getElementById('header-coins').textContent = String(char.coins);
+        document.getElementById('card-coins').textContent = `${char.coins} Z`;
+        document.getElementById('outfit-active-label').textContent = outfitObj ? outfitObj.name : 'Setelan Dasar';
+        document.getElementById('streak-label').textContent = `Streak: ${char.streak} Hari`;
+        document.getElementById('level-badge').textContent = `LVL ${char.level}`;
+        document.getElementById('rank-label').textContent = getRankTitle(char.level);
+        document.getElementById('char-name-display').textContent = char.name;
+
+        document.getElementById('hp-text').textContent = `${char.hp} / ${char.maxHp} HP`;
+        document.getElementById('hp-bar').style.width = `${Math.round((char.hp / char.maxHp) * 100)}%`;
+
+        document.getElementById('xp-text').textContent = `${char.xp} / ${xpMax} XP`;
+        document.getElementById('xp-bar').style.width = `${Math.min(100, Math.max(0, Math.round((char.xp / xpMax) * 100)))}%`;
+        document.getElementById('level-curve-note').textContent = getPhaseNote(char.level);
+
+        document.getElementById('btn-gender-male').className = `gender-btn ${char.gender === 'male' ? 'active' : ''}`;
+        document.getElementById('btn-gender-female').className = `gender-btn ${char.gender === 'female' ? 'active' : ''}`;
+
+        renderSkinAndHairControls();
+      }
+
+      function renderSkinAndHairControls() {
+        const skinGrid = document.getElementById('skin-grid');
+        const skinLabel = document.getElementById('skin-label');
+        clearNode(skinGrid);
+
+        const currentSkin = SKIN_TONES.find(s => s.hex.toLowerCase() === state.character.skin.toLowerCase()) || SKIN_TONES[1];
+        skinLabel.textContent = currentSkin.label;
+
+        SKIN_TONES.forEach(tone => {
+          const isSelected = tone.hex.toLowerCase() === state.character.skin.toLowerCase();
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `skin-btn ${isSelected ? 'active' : ''}`;
+          btn.setAttribute('aria-label', `Warna kulit ${tone.label}`);
+
+          const dot = document.createElement('span');
+          dot.className = 'skin-dot';
+          dot.style.backgroundColor = tone.hex;
+
+          const name = document.createElement('span');
+          name.className = 'skin-name';
+          name.textContent = tone.short;
+
+          btn.appendChild(dot);
+          btn.appendChild(name);
+
+          btn.addEventListener('click', () => {
+            state.character.skin = tone.hex;
+            saveState();
+            renderCharacter();
+            renderShop();
+            showToast(`Warna kulit diubah: ${tone.label}`);
+          });
+
+          skinGrid.appendChild(btn);
+        });
+
+        const hairGrid = document.getElementById('hair-grid');
+        const hairLabel = document.getElementById('hair-label');
+        clearNode(hairGrid);
+
+        const currentHair = HAIR_COLORS.find(h => h.hex.toLowerCase() === state.character.hair.toLowerCase()) || HAIR_COLORS[0];
+        hairLabel.textContent = currentHair.label;
+
+        HAIR_COLORS.forEach(h => {
+          const isSelected = h.hex.toLowerCase() === state.character.hair.toLowerCase();
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `hair-btn ${isSelected ? 'active' : ''}`;
+
+          const dot = document.createElement('span');
+          dot.className = 'hair-dot';
+          dot.style.backgroundColor = h.hex;
+
+          const txt = document.createElement('span');
+          txt.textContent = h.short;
+
+          btn.appendChild(dot);
+          btn.appendChild(txt);
+
+          btn.addEventListener('click', () => {
+            state.character.hair = h.hex;
+            saveState();
+            renderCharacter();
+          });
+
+          hairGrid.appendChild(btn);
+        });
+      }
+
+      // =====================================================================
+      // 2. LOGIKA REWARD & PENALTY (NAIK LEVEL PROGRESIF & TURUN LEVEL)
+      // =====================================================================
+      function addReward(coins, xpGain, hpGain) {
+        const c = state.character;
+        c.coins += coins;
+        c.xp += xpGain;
+        c.hp = Math.min(c.maxHp, c.hp + hpGain);
+
+        let leveledUp = false;
+        while (c.xp >= getXpRequired(c.level)) {
+          c.xp -= getXpRequired(c.level);
+          c.level += 1;
+          c.hp = c.maxHp;
+          c.coins += 25;
+          leveledUp = true;
+        }
+
+        if (leveledUp) {
+          showToast(`LEVEL UP! Karakter naik ke Level ${c.level} (+25 Koin & Full HP)!`, 'reward');
+        }
+      }
+
+      function addPenalty(coinsLoss, xpLoss, hpLoss) {
+        const c = state.character;
+        c.coins = Math.max(0, c.coins - coinsLoss);
+        c.hp = Math.max(0, c.hp - hpLoss);
+        c.xp -= xpLoss;
+
+        let leveledDown = false;
+        while (c.xp < 0 && c.level > 1) {
+          c.level -= 1;
+          c.xp += getXpRequired(c.level);
+          leveledDown = true;
+        }
+
+        if (c.xp < 0) {
+          c.xp = 0;
+        }
+
+        const card = document.getElementById('character-card');
+        if (card) {
+          card.classList.remove('penalty-shake');
+          void card.offsetWidth;
+          card.classList.add('penalty-shake');
+          setTimeout(() => card.classList.remove('penalty-shake'), 480);
+        }
+
+        if (leveledDown) {
+          showToast(`LEVEL DOWN! XP habis, level turun ke Level ${c.level}!`, 'error');
+        }
+
+        if (c.hp === 0) {
+          c.hp = 50;
+          c.streak = 0;
+          showToast('HP habis! Streak tereset dan nyawa dipulihkan ke 50 HP.', 'error');
+        }
+      }
+
+      // =====================================================================
+      // 3. RENDER TAB 1: KEBIASAAN HARIAN & TO-DO LIST
+      // =====================================================================
+      function renderHabits() {
+        const list = document.getElementById('habits-list');
+        clearNode(list);
+
+        if (state.habits.length === 0) {
+          const p = document.createElement('p');
+          p.className = 'section-desc';
+          p.textContent = 'Belum ada kebiasaan. Tambahkan kebiasaan baru di formulir atas!';
+          list.appendChild(p);
+          return;
+        }
+
+        state.habits.forEach(hab => {
+          const r = DIFF_RULES[hab.diff] || DIFF_RULES.Sedang;
+          const row = document.createElement('div');
+          row.className = `quest-row ${hab.doneToday ? 'done' : ''}`;
+
+          const info = document.createElement('div');
+
+          const badges = document.createElement('div');
+          badges.className = 'badge-row';
+
+          const bDiff = document.createElement('span');
+          bDiff.className = `diff-badge diff-${hab.diff}`;
+          bDiff.textContent = hab.diff;
+
+          const bStreak = document.createElement('span');
+          bStreak.className = 'meta-small';
+          bStreak.style.color = 'var(--amber)';
+          bStreak.textContent = `Streak: ${hab.streak}x`;
+
+          badges.appendChild(bDiff);
+          badges.appendChild(bStreak);
+
+          const title = document.createElement('div');
+          title.className = 'quest-title';
+          title.textContent = hab.title;
+
+          const sub = document.createElement('div');
+          sub.className = 'quest-sub';
+          sub.textContent = `Selesai (+): +${r.rewardCoins} Koin, +${r.rewardXp} XP, +${r.rewardHp} HP  |  Lalai (−): −${r.penaltyCoins} Koin, −${r.penaltyXp} XP, −${r.penaltyHp} HP`;
+
+          info.appendChild(badges);
+          info.appendChild(title);
+          info.appendChild(sub);
+
+          const actions = document.createElement('div');
+          actions.className = 'action-group';
+
+          const btnPlus = document.createElement('button');
+          btnPlus.type = 'button';
+          btnPlus.className = 'btn-plus';
+          btnPlus.setAttribute('aria-label', `Selesai kebiasaan ${hab.title}`);
+          btnPlus.textContent = '+';
+          btnPlus.addEventListener('click', () => {
+            hab.doneToday = true;
+            hab.streak += 1;
+            state.character.streak = Math.max(state.character.streak, hab.streak);
+            addReward(r.rewardCoins, r.rewardXp, r.rewardHp);
+            saveState();
+            renderAll();
+            showToast(`Mantap! "${hab.title}" selesai (+${r.rewardCoins} Koin, +${r.rewardXp} XP, +${r.rewardHp} HP)`, 'reward');
+          });
+
+          const btnMinus = document.createElement('button');
+          btnMinus.type = 'button';
+          btnMinus.className = 'btn-minus';
+          btnMinus.setAttribute('aria-label', `Gagal kebiasaan ${hab.title}`);
+          btnMinus.textContent = '−';
+          btnMinus.addEventListener('click', () => {
+            hab.doneToday = false;
+            hab.streak = 0;
+            addPenalty(r.penaltyCoins, r.penaltyXp, r.penaltyHp);
+            saveState();
+            renderAll();
+            showToast(`Lalai! "${hab.title}" tidak dijalani (−${r.penaltyCoins} Koin, −${r.penaltyXp} XP, −${r.penaltyHp} HP)`, 'error');
+          });
+
+          const btnDel = document.createElement('button');
+          btnDel.type = 'button';
+          btnDel.className = 'btn-del';
+          btnDel.setAttribute('aria-label', `Hapus kebiasaan ${hab.title}`);
+          btnDel.textContent = '×';
+          btnDel.addEventListener('click', () => {
+            state.habits = state.habits.filter(h => h.id !== hab.id);
+            saveState();
+            renderAll();
+            showToast('Kebiasaan dihapus.');
+          });
+
+          actions.appendChild(btnPlus);
+          actions.appendChild(btnMinus);
+          actions.appendChild(btnDel);
+
+          row.appendChild(info);
+          row.appendChild(actions);
+          list.appendChild(row);
+        });
+      }
+
+      function renderTodos() {
+        const list = document.getElementById('todos-list');
+        clearNode(list);
+
+        if (state.todos.length === 0) {
+          const p = document.createElement('p');
+          p.className = 'section-desc';
+          p.textContent = 'Daftar misi kosong. Tambahkan target misimu di formulir atas!';
+          list.appendChild(p);
+          return;
+        }
+
+        state.todos.forEach(td => {
+          const r = DIFF_RULES[td.diff] || DIFF_RULES.Sedang;
+          const row = document.createElement('div');
+          row.className = `quest-row ${td.status === 'done' ? 'done' : td.status === 'failed' ? 'failed' : ''}`;
+
+          const info = document.createElement('div');
+
+          const badges = document.createElement('div');
+          badges.className = 'badge-row';
+
+          const bDiff = document.createElement('span');
+          bDiff.className = `diff-badge diff-${td.diff}`;
+          bDiff.textContent = td.diff;
+
+          const bDate = document.createElement('span');
+          bDate.className = 'meta-small';
+          bDate.textContent = `Tanggal: ${formatDateIndo(td.date)}`;
+
+          badges.appendChild(bDiff);
+          badges.appendChild(bDate);
+
+          const title = document.createElement('div');
+          title.className = `quest-title ${td.status !== 'pending' ? 'strike' : ''}`;
+          title.textContent = td.title;
+
+          const sub = document.createElement('div');
+          sub.className = 'quest-sub';
+          sub.textContent = `Selesai (+): +${r.rewardCoins} Koin, +${r.rewardXp} XP, +${r.rewardHp} HP  |  Gagal (−): −${r.penaltyCoins} Koin, −${r.penaltyXp} XP, −${r.penaltyHp} HP`;
+
+          info.appendChild(badges);
+          info.appendChild(title);
+          info.appendChild(sub);
+
+          const actions = document.createElement('div');
+          actions.className = 'action-group';
+
+          const btnPlus = document.createElement('button');
+          btnPlus.type = 'button';
+          btnPlus.className = 'btn-plus';
+          btnPlus.setAttribute('aria-label', `Selesai misi ${td.title}`);
+          btnPlus.textContent = '+';
+          btnPlus.addEventListener('click', () => {
+            if (td.status !== 'done') {
+              td.status = 'done';
+              addReward(r.rewardCoins, r.rewardXp, r.rewardHp);
+              saveState();
+              renderAll();
+              showToast(`Misi tuntas! +${r.rewardCoins} Koin, +${r.rewardXp} XP & +${r.rewardHp} HP`, 'reward');
+            } else {
+              showToast('Misi ini sudah ditandai selesai.');
+            }
+          });
+
+          const btnMinus = document.createElement('button');
+          btnMinus.type = 'button';
+          btnMinus.className = 'btn-minus';
+          btnMinus.setAttribute('aria-label', `Gagal misi ${td.title}`);
+          btnMinus.textContent = '−';
+          btnMinus.addEventListener('click', () => {
+            td.status = 'failed';
+            addPenalty(r.penaltyCoins, r.penaltyXp, r.penaltyHp);
+            saveState();
+            renderAll();
+            showToast(`Misi gagal! −${r.penaltyCoins} Koin, −${r.penaltyXp} XP & −${r.penaltyHp} HP`, 'error');
+          });
+
+          const btnDel = document.createElement('button');
+          btnDel.type = 'button';
+          btnDel.className = 'btn-del';
+          btnDel.setAttribute('aria-label', `Hapus misi ${td.title}`);
+          btnDel.textContent = '×';
+          btnDel.addEventListener('click', () => {
+            state.todos = state.todos.filter(t => t.id !== td.id);
+            saveState();
+            renderAll();
+            showToast('Misi dihapus.');
+          });
+
+          actions.appendChild(btnPlus);
+          actions.appendChild(btnMinus);
+          actions.appendChild(btnDel);
+
+          row.appendChild(info);
+          row.appendChild(actions);
+          list.appendChild(row);
+        });
+      }
+
+      // =====================================================================
+      // 4. RENDER TAB 2: KALENDER & JURNAL HARIAN (+5 KOIN & +10 XP)
+      // =====================================================================
+      function renderCalendarAndJournal() {
+        const year = state.ui.calYear;
+        const month = state.ui.calMonth;
+        const todayStr = getTodayStr(0);
+
+        document.getElementById('cal-month-title').textContent = `${MONTHS_ID[month]} ${year}`;
+        const grid = document.getElementById('cal-days-grid');
+        clearNode(grid);
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDay; i++) {
+          const blank = document.createElement('div');
+          grid.appendChild(blank);
+        }
+
+        for (let d = 1; d <= totalDays; d++) {
+          const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const isSelected = state.ui.selectedDate === dateStr;
+          const isToday = todayStr === dateStr;
+          const hasTodo = state.todos.some(t => t.date === dateStr);
+          const jData = state.journals[dateStr];
+          const hasJournal = Boolean(jData && (jData.activity || jData.achievement));
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `cal-day-btn ${isSelected ? 'selected' : isToday ? 'today' : ''}`;
+
+          const num = document.createElement('span');
+          num.textContent = String(d);
+          btn.appendChild(num);
+
+          if (hasTodo || hasJournal) {
+            const dots = document.createElement('span');
+            dots.className = 'cal-dots';
+            if (hasTodo) {
+              const dt = document.createElement('span');
+              dt.className = 'dot-todo';
+              dots.appendChild(dt);
+            }
+            if (hasJournal) {
+              const dj = document.createElement('span');
+              dj.className = 'dot-journal';
+              dots.appendChild(dj);
+            }
+            btn.appendChild(dots);
+          }
+
+          btn.addEventListener('click', () => {
+            state.ui.selectedDate = dateStr;
+            renderCalendarAndJournal();
+          });
+
+          grid.appendChild(btn);
+        }
+
+        const selDate = state.ui.selectedDate;
+        document.getElementById('cal-agenda-heading').textContent = `Misi pada ${formatDateIndo(selDate)}`;
+        const agendaList = document.getElementById('cal-agenda-list');
+        clearNode(agendaList);
+
+        const dayTodos = state.todos.filter(t => t.date === selDate);
+        if (dayTodos.length === 0) {
+          const empty = document.createElement('div');
+          empty.className = 'quest-sub';
+          empty.textContent = 'Tidak ada misi terjadwal pada tanggal ini.';
+          agendaList.appendChild(empty);
+        } else {
+          dayTodos.forEach(t => {
+            const item = document.createElement('div');
+            item.className = 'quest-sub';
+            item.style.fontWeight = '700';
+            item.style.color = 'var(--ink)';
+            item.textContent = `• ${t.title} (${t.diff} — ${t.status === 'done' ? 'Selesai' : t.status === 'failed' ? 'Gagal' : 'Terjadwal'})`;
+            agendaList.appendChild(item);
+          });
+        }
+
+        document.getElementById('journal-active-date').textContent = `Tanggal Terpilih: ${formatDateIndo(selDate)}`;
+        const currentEntry = state.journals[selDate] || { activity: '', achievement: '', rewarded: false };
+        document.getElementById('journal-activity').value = currentEntry.activity || '';
+        document.getElementById('journal-achievement').value = currentEntry.achievement || '';
+
+        const histList = document.getElementById('journal-history-list');
+        clearNode(histList);
+
+        const journalDates = Object.keys(state.journals)
+          .filter(k => state.journals[k] && (state.journals[k].activity || state.journals[k].achievement))
+          .sort((a, b) => b.localeCompare(a));
+
+        if (journalDates.length === 0) {
+          const empty = document.createElement('p');
+          empty.className = 'section-desc';
+          empty.textContent = 'Belum ada jurnal tersimpan.';
+          histList.appendChild(empty);
+        } else {
+          journalDates.forEach(dt => {
+            const entry = state.journals[dt];
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'journal-entry-card';
+
+            const head = document.createElement('div');
+            head.style.fontWeight = '800';
+            head.style.fontSize = '0.8rem';
+            head.style.color = 'var(--crimson)';
+            head.textContent = formatDateIndo(dt);
+
+            const act = document.createElement('div');
+            act.className = 'quest-sub';
+            act.style.color = 'var(--ink)';
+            act.textContent = `Aktivitas: ${entry.activity || '-'}`;
+
+            const ach = document.createElement('div');
+            ach.className = 'quest-sub';
+            ach.textContent = `Pelajaran / Hasil: ${entry.achievement || '-'}`;
+
+            card.appendChild(head);
+            card.appendChild(act);
+            card.appendChild(ach);
+
+            card.addEventListener('click', () => {
+              state.ui.selectedDate = dt;
+              const p = dt.split('-');
+              if (p.length === 3) {
+                state.ui.calYear = parseInt(p[0], 10);
+                state.ui.calMonth = parseInt(p[1], 10) - 1;
+              }
+              renderCalendarAndJournal();
+              showToast(`Membuka jurnal ${formatDateIndo(dt)}`);
+            });
+
+            histList.appendChild(card);
+          });
+        }
+      }
+
+      // =====================================================================
+      // 5. RENDER TAB 3: TOKO & LEMARI (BELI, KENAKAN / LEPAS)
+      // =====================================================================
+      function createMiniOutfitSvg(outfitId) {
+        const svg = svgEl('svg', { viewBox: '60 126 100 115', width: '88', height: '88' });
+        const grp = svgEl('g', {});
+        drawOutfitOnGroup(grp, outfitId, state.character.gender, state.character.skin);
+        svg.appendChild(grp);
+        return svg;
+      }
+
+      function renderShop() {
+        const grid = document.getElementById('shop-grid');
+        clearNode(grid);
+
+        const c = state.character;
+
+        OUTFITS.forEach(item => {
+          const isOwned = c.ownedOutfits.includes(item.id);
+          const isEquipped = c.equippedOutfit === item.id;
+
+          const card = document.createElement('div');
+          card.className = `shop-card ${isEquipped ? 'equipped' : ''}`;
+
+          const top = document.createElement('div');
+          top.style.display = 'flex';
+          top.style.flexDirection = 'column';
+          top.style.gap = '0.5rem';
+
+          const headRow = document.createElement('div');
+          headRow.style.display = 'flex';
+          headRow.style.justifyContent = 'space-between';
+          headRow.style.fontSize = '0.75rem';
+          headRow.style.fontWeight = '800';
+
+          const statusTag = document.createElement('span');
+          statusTag.style.color = isEquipped ? 'var(--crimson)' : 'var(--amber)';
+          statusTag.textContent = isEquipped ? 'Sedang Dipakai' : isOwned ? 'Tersimpan di Lemari' : 'Tersedia';
+
+          const priceTag = document.createElement('span');
+          priceTag.textContent = item.price === 0 ? 'Gratis' : `${item.price} Koin`;
+
+          headRow.appendChild(statusTag);
+          headRow.appendChild(priceTag);
+
+          const preview = document.createElement('div');
+          preview.className = 'shop-preview';
+          preview.appendChild(createMiniOutfitSvg(item.id));
+
+          const nameEl = document.createElement('div');
+          nameEl.className = 'quest-title';
+          nameEl.textContent = item.name;
+
+          const descEl = document.createElement('div');
+          descEl.className = 'quest-sub';
+          descEl.textContent = item.desc;
+
+          top.appendChild(headRow);
+          top.appendChild(preview);
+          top.appendChild(nameEl);
+          top.appendChild(descEl);
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+
+          if (!isOwned) {
+            btn.className = 'shop-btn-buy';
+            btn.textContent = `Beli (${item.price} Koin)`;
+            btn.addEventListener('click', () => {
+              if (c.coins < item.price) {
+                showToast('Koin belum cukup! Selesaikan kebiasaan atau jurnal untuk meraih Koin.', 'error');
+                return;
+              }
+              c.coins -= item.price;
+              c.ownedOutfits.push(item.id);
+              c.equippedOutfit = item.id;
+              saveState();
+              renderAll();
+              showToast(`Berhasil membeli & mengenakan ${item.name}!`, 'reward');
+            });
+          } else if (isEquipped) {
+            btn.className = 'shop-btn-equipped';
+            btn.textContent = 'Lepas Kostum';
+            btn.addEventListener('click', () => {
+              c.equippedOutfit = '';
+              saveState();
+              renderAll();
+              showToast(`${item.name} dilepas ke lemari.`);
+            });
+          } else {
+            btn.className = 'shop-btn-equip';
+            btn.textContent = 'Kenakan';
+            btn.addEventListener('click', () => {
+              c.equippedOutfit = item.id;
+              saveState();
+              renderAll();
+              showToast(`Karakter mengenakan ${item.name}!`);
+            });
+          }
+
+          card.appendChild(top);
+          card.appendChild(btn);
+          grid.appendChild(card);
+        });
+      }
+
+      // =====================================================================
+      // 6. EVENT LISTENERS & INISIALISASI DOM
+      // =====================================================================
+      function switchTab(tabId) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById(tabId);
+        if (panel) panel.classList.add('active');
+
+        document.querySelectorAll('.nav-btn, .mobile-nav-btn').forEach(btn => {
+          const isMatch = btn.getAttribute('data-tab') === tabId;
+          if (isMatch) btn.classList.add('active');
+          else btn.classList.remove('active');
+        });
+      }
+
+      function bindEvents() {
+        document.querySelectorAll('.nav-btn, .mobile-nav-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            switchTab(btn.getAttribute('data-tab'));
+          });
+        });
+
+        document.getElementById('btn-gender-male').addEventListener('click', () => {
+          state.character.gender = 'male';
+          saveState();
+          renderAll();
+        });
+        document.getElementById('btn-gender-female').addEventListener('click', () => {
+          state.character.gender = 'female';
+          saveState();
+          renderAll();
+        });
+
+        const nameModal = document.getElementById('name-modal');
+        const nameInput = document.getElementById('input-char-name');
+
+        document.getElementById('btn-open-name-modal').addEventListener('click', () => {
+          nameInput.value = state.character.name;
+          nameModal.classList.add('open');
+          nameInput.focus();
+        });
+
+        document.getElementById('btn-cancel-name').addEventListener('click', () => {
+          nameModal.classList.remove('open');
+        });
+
+        document.getElementById('btn-save-name').addEventListener('click', () => {
+          const clean = sanitize(nameInput.value, 24);
+          if (clean.length >= 2) {
+            state.character.name = clean;
+            saveState();
+            renderCharacter();
+            showToast('Nama karakter diperbarui!');
+          }
+          nameModal.classList.remove('open');
+        });
+
+        document.getElementById('form-habit').addEventListener('submit', e => {
+          e.preventDefault();
+          const titleEl = document.getElementById('habit-title');
+          const diffEl = document.getElementById('habit-diff');
+          const clean = sanitize(titleEl.value, 60);
+
+          if (clean.length < 2) {
+            showToast('Nama kebiasaan minimal 2 karakter.', 'error');
+            titleEl.focus();
+            return;
+          }
+
+          state.habits.unshift({
+            id: 'hab-' + Date.now(),
+            title: clean,
+            diff: diffEl.value,
+            streak: 0,
+            doneToday: false
+          });
+
+          titleEl.value = '';
+          saveState();
+          renderAll();
+          showToast(`Kebiasaan "${clean}" ditambahkan!`);
+        });
+
+        const todoDateEl = document.getElementById('todo-date');
+        todoDateEl.value = getTodayStr(0);
+
+        document.getElementById('form-todo').addEventListener('submit', e => {
+          e.preventDefault();
+          const titleEl = document.getElementById('todo-title');
+          const diffEl = document.getElementById('todo-diff');
+          const clean = sanitize(titleEl.value, 70);
+
+          if (clean.length < 2) {
+            showToast('Judul misi minimal 2 karakter.', 'error');
+            titleEl.focus();
+            return;
+          }
+
+          const targetDate = todoDateEl.value || getTodayStr(0);
+
+          state.todos.unshift({
+            id: 'td-' + Date.now(),
+            title: clean,
+            date: targetDate,
+            diff: diffEl.value,
+            status: 'pending'
+          });
+
+          state.ui.selectedDate = targetDate;
+          const parts = targetDate.split('-');
+          if (parts.length === 3) {
+            state.ui.calYear = parseInt(parts[0], 10);
+            state.ui.calMonth = parseInt(parts[1], 10) - 1;
+          }
+
+          titleEl.value = '';
+          saveState();
+          renderAll();
+          showToast(`Misi "${clean}" ditambahkan untuk ${formatDateIndo(targetDate)}!`);
+        });
+
+        document.getElementById('btn-prev-month').addEventListener('click', () => {
+          state.ui.calMonth -= 1;
+          if (state.ui.calMonth < 0) {
+            state.ui.calMonth = 11;
+            state.ui.calYear -= 1;
+          }
+          renderCalendarAndJournal();
+        });
+
+        document.getElementById('btn-next-month').addEventListener('click', () => {
+          state.ui.calMonth += 1;
+          if (state.ui.calMonth > 11) {
+            state.ui.calMonth = 0;
+            state.ui.calYear += 1;
+          }
+          renderCalendarAndJournal();
+        });
+
+        document.getElementById('btn-save-journal').addEventListener('click', () => {
+          const dt = state.ui.selectedDate;
+          const actEl = document.getElementById('journal-activity');
+          const achEl = document.getElementById('journal-achievement');
+          const cleanAct = sanitize(actEl.value, 400);
+          const cleanAch = sanitize(achEl.value, 400);
+
+          if (!cleanAct && !cleanAch) {
+            showToast('Isi minimal satu kolom refleksi sebelum menyimpan jurnal.', 'error');
+            actEl.focus();
+            return;
+          }
+
+          const existing = state.journals[dt];
+          const alreadyRewarded = Boolean(existing && existing.rewarded);
+
+          state.journals[dt] = {
+            activity: cleanAct,
+            achievement: cleanAch,
+            rewarded: true
+          };
+
+          if (!alreadyRewarded) {
+            addReward(5, 10, 0);
+            showToast(`Jurnal ${formatDateIndo(dt)} tersimpan! (+5 Koin & +10 XP)`, 'reward');
+          } else {
+            showToast(`Perubahan jurnal ${formatDateIndo(dt)} berhasil disimpan!`);
+          }
+
+          saveState();
+          renderAll();
+        });
+
+        // Tombol Izin Notifikasi Pengingat Browser dengan Fallback Toast
+        document.getElementById('btn-enable-notif').addEventListener('click', () => {
+          if (!('Notification' in window)) {
+            showToast('Browser tidak mendukung notifikasi sistem; pengingat aktif via toast halaman.');
+            return;
+          }
+          if (Notification.permission === 'granted') {
+            showToast('Pengingat misi & jurnal sudah aktif!', 'reward');
+            return;
+          }
+          if (Notification.permission === 'denied') {
+            showToast('Izin notifikasi diblokir browser; pengingat dialihkan ke notifikasi halaman.', 'error');
+            return;
+          }
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              showToast('Pengingat browser berhasil diaktifkan!', 'reward');
+              try {
+                new Notification('Ziro Habbits', { body: 'Pengingat kebiasaan & misi harian aktif!' });
+              } catch (e) {
+                // Abaikan jika pratinjau sandbox membatasi konstruktor Notification
+              }
+            } else {
+              showToast('Pengingat tetap aktif menggunakan notifikasi dalam halaman.');
+            }
+          }).catch(() => {
+            showToast('Pengingat aktif menggunakan notifikasi dalam halaman.');
+          });
+        });
+
+        // Tombol Salin Kode di Tab Keamanan & Deploy
+        document.querySelectorAll('.copy-code-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-copy-target');
+            const codeEl = document.getElementById(targetId);
+            if (!codeEl) return;
+
+            const tempArea = document.createElement('textarea');
+            tempArea.value = codeEl.textContent || '';
+            tempArea.style.position = 'fixed';
+            tempArea.style.opacity = '0';
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+              document.execCommand('copy');
+              showToast('Kode berhasil disalin ke clipboard!', 'reward');
+            } catch (err) {
+              showToast('Gagal menyalin kode.', 'error');
+            }
+            document.body.removeChild(tempArea);
+          });
+        });
+      }
+
+      function renderAll() {
+        renderCharacter();
+        renderHabits();
+        renderTodos();
+        renderCalendarAndJournal();
+        renderShop();
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        bindEvents();
+        renderAll();
+      });
+    })();
+  </script>
+</body>
+</html>
